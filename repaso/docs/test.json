@@ -1,0 +1,18 @@
+{
+  "name": "Juan Pérez",
+  "age": 30,
+  "email": "juan.perez@example.com",
+  "skills": ["Java", "React", "TensorFlow"],
+  "projects": [
+    {
+      "name": "Sistema de Inventario",
+      "year": 2023,
+      "technologies": ["Spring Boot", "React", "PostgreSQL"]
+    },
+    {
+      "name": "Modelo de IA para predicción",
+      "year": 2024,
+      "technologies": ["TensorFlow", "Python", "Big Data"]
+    }
+  ]
+}
