@@ -5,7 +5,7 @@ import * as DocumentPicker from 'expo-document-picker';
 import * as FileSystem from 'expo-file-system';
 
 // Reemplaza con tu clave de API de Gemini
-const API_KEY = "";
+const API_KEY = "AIzaSyDpOWbNh22z8lRIM0RDPgiayv48tAyBxjc";
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 interface Message {

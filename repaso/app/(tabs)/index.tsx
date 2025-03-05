@@ -1,13 +1,16 @@
-import { Image, StyleSheet, Platform, View, Text, Button, ScrollView } from 'react-native';
+import { StyleSheet, Platform, View, Text, Button, ScrollView, Image, Pressable } from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import SplashScreenView from '@/components/SplashScreenView';
 import * as DocumentPicker from 'expo-document-picker';
 import * as FileSystem from 'expo-file-system';
+import FastImage from 'react-native-fast-image';
+import { Video, ResizeMode } from "expo-av";
+import { Link, useRouter } from 'expo-router';
 //var xml2js = require('xml2js');
 
 
@@ -25,6 +28,10 @@ export default function HomeScreen() {
   const [file, setFile] = useState<FileData | null>(null);
   const [extractedContent, setExtractedContent] = useState<string>('');
   const [response, setResponse] = useState<string>('');
+
+  const videoRef = useRef<Video>(null);
+
+  const router = useRouter();
 
   const [visible, setVisible] = useState(false);
   /* useEffect(() => {
@@ -103,7 +110,28 @@ export default function HomeScreen() {
           <Text className='text-white'>{extractedContent}</Text>
          </ScrollView>
       : null}
+
+      <Video
+        ref={videoRef}
+        source={require('@/assets/images/video-test.mp4')} // Ejemplo de video MP4
+        style={{ width: 300, height: 300 }}
+        //className="w-64 h-36 self-center mb-6" // Tamaño ajustado
+        useNativeControls // Muestra controles nativos (play, pausa, etc.)
+        resizeMode={ResizeMode.CONTAIN} // Equivalente a contentFit="contain"
+        isLooping // Repite el video automáticamente
+        onError={(e) => console.log("Error cargando video:", e)}
+        onLoad={() => console.log("Video cargado correctamente")}
+      />
+
+      <Link className='text-white' href="https://docs.expo.dev/versions/latest/sdk/av/" >asd</Link>
       
+      <Pressable onPress={() => router.push({
+        pathname: '/chart',
+        params: { data: 'Hola' }
+      })}>
+        <Text className='text-white pt-8'>Pressable</Text>
+      </Pressable>
+
       </View>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
